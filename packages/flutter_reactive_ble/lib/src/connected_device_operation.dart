@@ -11,6 +11,11 @@ abstract class ConnectedDeviceOperation {
     required List<int> value,
   });
 
+  Future<void> writeCharacteristicWithResponseHex(
+    QualifiedCharacteristic characteristic, {
+    required String value,
+  });
+
   Future<void> writeCharacteristicWithoutResponse(
     QualifiedCharacteristic characteristic, {
     required List<int> value,
@@ -59,6 +64,15 @@ class ConnectedDeviceOperationImpl implements ConnectedDeviceOperation {
   }) async =>
       _blePlatform
           .writeCharacteristicWithResponse(characteristic, value)
+          .then((info) => info.result.dematerialize());
+
+  @override
+  Future<void> writeCharacteristicWithResponseHex(
+    QualifiedCharacteristic characteristic, {
+    required String value,
+  }) async =>
+      _blePlatform
+          .writeCharacteristicWithResponseHex(characteristic, value)
           .then((info) => info.result.dematerialize());
 
   @override

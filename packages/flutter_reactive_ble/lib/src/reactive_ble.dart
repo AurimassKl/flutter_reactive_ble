@@ -174,6 +174,20 @@ class FlutterReactiveBle {
     );
   }
 
+  /// Writes a value to the specified characteristic awaiting for an acknowledgement.
+  ///
+  /// The returned future completes with an error in case of a failure during writing.
+  Future<void> writeCharacteristicWithResponseHex(
+    QualifiedCharacteristic characteristic, {
+    required String value,
+  }) async {
+    await initialize();
+    return _connectedDeviceOperator.writeCharacteristicWithResponseHex(
+      characteristic,
+      value: value,
+    );
+  }
+
   /// Writes a value to the specified characteristic without waiting for an acknowledgement.
   ///
   /// Use this method in case the  client does not need an acknowledgement
