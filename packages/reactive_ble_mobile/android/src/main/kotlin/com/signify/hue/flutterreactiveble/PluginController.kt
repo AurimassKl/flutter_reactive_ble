@@ -31,6 +31,7 @@ class PluginController {
             "disconnectFromDevice" to this::disconnectFromDevice,
             "readCharacteristic" to this::readCharacteristic,
             "writeCharacteristicWithResponse" to this::writeCharacteristicWithResponse,
+            "writeCharacteristicWithResponseHex" to this::writeCharacteristicWithResponseHex,
             "writeCharacteristicWithoutResponse" to this::writeCharacteristicWithoutResponse,
             "readNotifications" to this::readNotifications,
             "stopNotifications" to this::stopNotifications,
@@ -172,6 +173,10 @@ class PluginController {
 
     private fun writeCharacteristicWithResponse(call: MethodCall, result: Result) {
         executeWriteAndPropagateResultToChannel(call, result, com.signify.hue.flutterreactiveble.ble.BleClient::writeCharacteristicWithResponse)
+    }
+
+    private fun writeCharacteristicWithResponseHex(call: MethodCall, result: Result) {
+        executeWriteAndPropagateResultToChannel(call, result, com.signify.hue.flutterreactiveble.ble.BleClient::writeCharacteristicWithResponseHex)
     }
 
     private fun writeCharacteristicWithoutResponse(call: MethodCall, result: Result) {

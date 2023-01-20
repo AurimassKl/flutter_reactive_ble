@@ -1136,6 +1136,97 @@ class WriteCharacteristicRequest extends $pb.GeneratedMessage {
   void clearValue() => clearField(2);
 }
 
+class WriteCharacteristicRequestHex extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'WriteCharacteristicRequestHex',
+      createEmptyInstance: create)
+    ..aOM<CharacteristicAddress>(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'characteristic',
+        subBuilder: CharacteristicAddress.create)
+    ..a<$core.String>(
+        2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'value',
+        $pb.PbFieldType.OY)
+    ..hasRequiredFields = false;
+
+  WriteCharacteristicRequestHex._() : super();
+  factory WriteCharacteristicRequestHex({
+    CharacteristicAddress? characteristic,
+    $core.String? value,
+  }) {
+    final _result = create();
+    if (characteristic != null) {
+      _result.characteristic = characteristic;
+    }
+    if (value != null) {
+      _result.value = value;
+    }
+    return _result;
+  }
+  factory WriteCharacteristicRequestHex.fromBuffer($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory WriteCharacteristicRequestHex.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  WriteCharacteristicRequestHex clone() =>
+      WriteCharacteristicRequestHex()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  WriteCharacteristicRequestHex copyWith(
+          void Function(WriteCharacteristicRequestHex) updates) =>
+      super.copyWith(
+              (message) => updates(message as WriteCharacteristicRequestHex))
+          as WriteCharacteristicRequestHex; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static WriteCharacteristicRequestHex create() => WriteCharacteristicRequestHex._();
+  WriteCharacteristicRequestHex createEmptyInstance() => create();
+  static $pb.PbList<WriteCharacteristicRequestHex> createRepeated() =>
+      $pb.PbList<WriteCharacteristicRequestHex>();
+  @$core.pragma('dart2js:noInline')
+  static WriteCharacteristicRequestHex getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<WriteCharacteristicRequestHex>(create);
+  static WriteCharacteristicRequestHex? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  CharacteristicAddress get characteristic => $_getN(0);
+  @$pb.TagNumber(1)
+  set characteristic(CharacteristicAddress v) {
+    setField(1, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasCharacteristic() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearCharacteristic() => clearField(1);
+  @$pb.TagNumber(1)
+  CharacteristicAddress ensureCharacteristic() => $_ensure(0);
+
+  @$pb.TagNumber(2)
+  $core.String get value => $_getN(1);
+  @$pb.TagNumber(2)
+  set value($core.String v) {
+    $_setBytes(1, v);
+  }
+
+  @$pb.TagNumber(2)
+  $core.bool hasValue() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearValue() => clearField(2);
+}
+
 class WriteCharacteristicInfo extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       const $core.bool.fromEnvironment('protobuf.omit_message_names')
@@ -1171,6 +1262,9 @@ class WriteCharacteristicInfo extends $pb.GeneratedMessage {
     return _result;
   }
   factory WriteCharacteristicInfo.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory WriteCharacteristicInfo.fromBufferHex($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
   factory WriteCharacteristicInfo.fromJson($core.String i,

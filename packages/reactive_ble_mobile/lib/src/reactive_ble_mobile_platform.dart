@@ -185,6 +185,21 @@ class ReactiveBleMobilePlatform extends ReactiveBlePlatform {
   }
 
   @override
+  Future<WriteCharacteristicInfo> writeCharacteristicWithResponseHex(
+    QualifiedCharacteristic characteristic,
+    String value,
+  ) async {
+    _logger?.log('Write with response to $characteristic, value: $value');
+    return _bleMethodChannel
+        .invokeMethod<String>(
+            "writeCharacteristicWithResponseHex",
+            _argsToProtobufConverter
+                .createWriteCharacteristicRequestHex(characteristic, value)
+                .writeToBuffer())
+        .then((data) => _protobufConverter.writeCharacteristicInfoFromHex(data!));
+  }
+
+  @override
   Future<WriteCharacteristicInfo> writeCharacteristicWithoutResponse(
     QualifiedCharacteristic characteristic,
     List<int> value,

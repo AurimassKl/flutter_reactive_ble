@@ -29,11 +29,17 @@ interface BleClient {
         characteristic: UUID,
         value: ByteArray
     ): Single<CharOperationResult>
+    fun writeCharacteristicWithResponseHex(
+        deviceId: String,
+        characteristic: UUID,
+        value: ByteArray
+    ): Single<CharOperationResult>
     fun writeCharacteristicWithoutResponse(
         deviceId: String,
         characteristic: UUID,
         value: ByteArray
     ): Single<CharOperationResult>
+    
     fun negotiateMtuSize(deviceId: String, size: Int): Single<MtuNegotiateResult>
     fun observeBleStatus(): Observable<BleStatus>
     fun requestConnectionPriority(deviceId: String, priority: ConnectionPriority):

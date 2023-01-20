@@ -186,6 +186,18 @@ open class ReactiveBleClient(private val context: Context) : BleClient {
             RxBleConnection::writeCharWithResponse
         )
 
+        override fun writeCharacteristicWithResponseHex(
+            deviceId: String,
+            characteristic: UUID,
+            value: ByteArray
+        ): Single<CharOperationResult> =
+            executeWriteOperation(
+                deviceId,
+                characteristic,
+                value,
+                RxBleConnection::writeCharWithResponse
+            )
+
     override fun writeCharacteristicWithoutResponse(
         deviceId: String,
         characteristic: UUID,

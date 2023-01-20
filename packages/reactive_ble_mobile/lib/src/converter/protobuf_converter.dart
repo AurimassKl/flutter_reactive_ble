@@ -19,6 +19,8 @@ abstract class ProtobufConverter {
 
   WriteCharacteristicInfo writeCharacteristicInfoFrom(List<int> data);
 
+  WriteCharacteristicInfo writeCharacteristicInfoFromHex(String data);
+
   ConnectionPriorityInfo connectionPriorityInfoFrom(List<int> data);
 
   int mtuSizeFrom(List<int> data) =>
@@ -127,6 +129,24 @@ class ProtobufConverterImpl implements ProtobufConverter {
   @override
   WriteCharacteristicInfo writeCharacteristicInfoFrom(List<int> data) {
     final message = pb.WriteCharacteristicInfo.fromBuffer(data);
+
+    return WriteCharacteristicInfo(
+      characteristic: qualifiedCharacteristicFrom(message.characteristic),
+      result: resultFrom(
+        getValue: () => const Unit(),
+        failure: genericFailureFrom(
+          hasFailure: message.hasFailure(),
+          getFailure: () => message.failure,
+          codes: WriteCharacteristicFailure.values,
+          fallback: (rawOrNull) => WriteCharacteristicFailure.unknown,
+        ),
+      ),
+    );
+  }
+
+  @override
+  WriteCharacteristicInfo writeCharacteristicInfoFromHex(String data) {
+    final message = pb.WriteCharacteristicInfo.fromBufferHex(data);
 
     return WriteCharacteristicInfo(
       characteristic: qualifiedCharacteristicFrom(message.characteristic),

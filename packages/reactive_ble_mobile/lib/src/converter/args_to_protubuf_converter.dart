@@ -20,6 +20,11 @@ abstract class ArgsToProtobufConverter {
     List<int> value,
   );
 
+  pb.WriteCharacteristicRequestHex createWriteCharacteristicRequestHex(
+    QualifiedCharacteristic characteristic,
+    String value,
+  );
+
   pb.NotifyCharacteristicRequest createNotifyCharacteristicRequest(
     QualifiedCharacteristic characteristic,
   );
@@ -106,6 +111,22 @@ class ArgsToProtobufConverterImpl implements ArgsToProtobufConverter {
     List<int> value,
   ) {
     final args = pb.WriteCharacteristicRequest()
+      ..characteristic = (pb.CharacteristicAddress()
+        ..deviceId = characteristic.deviceId
+        ..serviceUuid = (pb.Uuid()..data = characteristic.serviceId.data)
+        ..characteristicUuid =
+            (pb.Uuid()..data = characteristic.characteristicId.data))
+      ..value = value;
+
+    return args;
+  }
+
+  @override
+  pb.WriteCharacteristicRequestHex createWriteCharacteristicRequestHex(
+    QualifiedCharacteristic characteristic,
+    String value,
+  ) {
+    final args = pb.WriteCharacteristicRequestHex()
       ..characteristic = (pb.CharacteristicAddress()
         ..deviceId = characteristic.deviceId
         ..serviceUuid = (pb.Uuid()..data = characteristic.serviceId.data)
